@@ -1,7 +1,7 @@
 <template>
   <el-container class="homeContainer">
     <el-header class="homeHeader">
-      <nav class="navbar navbar-expand-lg">
+      <nav class="navbar navbar-expand-lg bg-white">
         <div class="container">
   <a class="navbar-brand" href="#"><el-image
       style="width: 30px; height: 30px"

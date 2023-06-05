@@ -1,44 +1,54 @@
 <template>
   <div class="container">
-    <el-row type="flex" justify="center" class="py-5">
+    <el-alert
+      title="请同学们合理发布商品！"
+      type="success">
+    </el-alert>
+    <el-row type="flex" justify="center" class="pt-3 pb-4">
       <el-col :span="8">
+        <el-row type="flex">
+          <el-image
+            style="width: 50px; height: 50px"
+            :src="require('@/assets/logo.png')"
+            class="mr-2">
+          </el-image>
+          <h3 class="mt-1">校园易购平台</h3>
+        </el-row>
+      </el-col>
+      <el-col :span="7">
         <el-input placeholder="请输入内容" v-model="searchText" class="input-with-select">
           <el-button slot="append" icon="el-icon-search"></el-button>
         </el-input>
       </el-col>
+      <el-col :span="9">
+        <el-row type="flex" justify="end">
+          <el-button type="primary" icon="el-icon-plus">发布商品</el-button>
+          <el-button type="success" icon="el-icon-shopping-bag-1">求购商品</el-button>
+          <el-button type="info" icon="el-icon-notebook-2">我的订单</el-button>
+        </el-row>
+      </el-col>
     </el-row>
     <el-row>
       <el-col>
-        <el-tabs type="card"  style="height: 200px;">
-          <el-tab-pane label="最新发布">
-            <div class="row row-cols-1 row-cols-md-4">
-              <div v-for="o in 8" :key="o" class="col mb-4">
-                <div class="card h-100 overflow-hidden">
-                  <el-image
-                    src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg">
-                  </el-image>
-                  <div class="card-body">
-                    <el-button type="primary" icon="el-icon-shopping-cart-2" circle></el-button>
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <el-card class="box-card">
+        <el-tabs >
+          <el-tab-pane label="最新发布" v-for="i in 8" :key="i">
+          <GoodsList />
           </el-tab-pane>
-          <el-tab-pane label="配置管理">配置管理</el-tab-pane>
-          <el-tab-pane label="角色管理">角色管理</el-tab-pane>
-          <el-tab-pane label="定时任务补偿">定时任务补偿</el-tab-pane>
         </el-tabs>
+      </el-card>
       </el-col>
     </el-row>
   </div>
 </template>
 
 <script>
+import GoodsList from '@/components/GoodsList.vue'
 export default {
   name: 'IndexView',
-  components: {},
+  components: {
+    GoodsList
+  },
   props: {},
   data () {
     return {
@@ -53,4 +63,7 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+.container{
+  padding: 20px 0px;
+}
 </style>
