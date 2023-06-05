@@ -7,21 +7,43 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    // name: 'home', // 如果有默认子路由，父路由的命名无意义
+    component: HomeView,
+    children: [
+      {
+        // 默认子路由，在父路由默认加载此路由
+        path: '/',
+        name: 'home',
+        component: () => import('@/views/indexComponents/IndexView')
+      },
+      {
+        // 用户页面路由
+        path: '/users',
+        name: 'users',
+        component: () => import('@/views/indexComponents/UsersView')
+      },
+      {
+        // 我的页面路由
+        path: '/my',
+        name: 'my',
+        component: () => import('@/views/indexComponents/MyView')
+      }
+    ]
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/loginPage/LoginView')
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import('@/views/registerPage/RegisterView')
   }
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes
 })
